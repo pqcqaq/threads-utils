@@ -19,7 +19,7 @@ public class Promise<T> {
      * 在使用Promise之前需要设置线程池
      * 工具类中自动注入线程池
      */
-    private static final Executor PROMISE_EXECUTOR = (Executor) ThreadsUtilsAutoInject.getBeanByName("promiseExecutor");
+    private static final Executor PROMISE_EXECUTOR = ThreadsUtilsAutoInject.getPromiseExecutor();
     /**
      * 设置执行状态，1表示未执行，0表示已执行
      */

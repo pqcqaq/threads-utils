@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -17,6 +18,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 public class ThreadsUtilsAutoInject {
 
+    private static Executor promiseExecutor;
+
     private static final Logger log = LoggerFactory.getLogger(ThreadsUtilsAutoInject.class);
 
     private static ApplicationContext applicationContext;
@@ -24,6 +27,13 @@ public class ThreadsUtilsAutoInject {
     @Autowired
     public void setApplicationContext(ApplicationContext applicationContext) {
         ThreadsUtilsAutoInject.applicationContext = applicationContext;
+    }
+
+    public static <T> T getBean(Class<T> name) {
+        if (applicationContext == null) {
+            throw new RuntimeException("applicationContext is null");
+        }
+        return applicationContext.getBean(name);
     }
 
     public static Object getBeanByName(String name) {
@@ -52,6 +62,11 @@ public class ThreadsUtilsAutoInject {
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 初始化
         executor.initialize();
+        promiseExecutor = executor;
         return executor;
+    }
+
+    public static Executor getPromiseExecutor() {
+        return promiseExecutor;
     }
 }
