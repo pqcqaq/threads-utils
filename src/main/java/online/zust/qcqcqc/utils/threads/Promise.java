@@ -58,6 +58,11 @@ public class Promise<T> {
     private final Next next;
 
     /**
+     * 是否已经开始
+     */
+    private boolean started;
+
+    /**
      * 下一步状态
      */
     public static class Next {
@@ -104,10 +109,12 @@ public class Promise<T> {
      * @param promisedTask 任务
      */
     private Promise(PromisedTask<T> promisedTask) {
+        // init
         this.next = new Next();
         this.promisedTask = promisedTask;
         this.countDownLatch = new CountDownLatch(1);
         this.status = PromiseStatus.PENDING;
+        this.started = false;
     }
 
     /**
@@ -157,7 +164,12 @@ public class Promise<T> {
      * 开始执行
      */
     public void start() {
+        if (started) {
+            log.warn("尝试start重复启动一个Promise！");
+            return;
+        }
         Runnable promiseTaskLine = () -> {
+            this.started = true;
             try {
                 this.result = promisedTask.execute(next);
                 this.status = this.next.status;
@@ -241,6 +253,9 @@ public class Promise<T> {
      * @return 结果
      */
     public T getResult() {
+        if (!started) {
+            start();
+        }
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -255,7 +270,9 @@ public class Promise<T> {
      * @return 结果
      */
     public T await() {
-        start();
+        if (!started) {
+            start();
+        }
         // 等待线程池执行完毕
         try {
             countDownLatch.await();
@@ -272,5 +289,22 @@ public class Promise<T> {
      */
     public PromiseStatus getStatus() {
         return status;
+    }
+
+    /**
+     * 重新构建
+     * @return Promise
+     */
+    public Promise<T> reBuild() {
+        return new Promise<>(promisedTask).onSucceed(success).onFail(fail).onFinally(finallyCall);
+    }
+
+    /**
+     * 更改任务
+     * @param task 任务
+     * @return Promise
+     */
+    public Promise<T> changeTask(PromisedTask<T> task) {
+        return new Promise<>(task).onSucceed(success).onFail(fail).onFinally(finallyCall);
     }
 }
