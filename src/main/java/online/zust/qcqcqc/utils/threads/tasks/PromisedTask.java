@@ -9,6 +9,7 @@ import online.zust.qcqcqc.utils.threads.Promise;
 public interface PromisedTask<T> {
     /**
      * 执行任务
+     *
      * @param status 状态
      * @return 结果
      * @throws Exception 异常

@@ -6,9 +6,11 @@ package online.zust.qcqcqc.utils.threads.tasks;
  * Date: 2024/2/27
  * Time: 18:13
  */
+@FunctionalInterface
 public interface ExceptionHandleTask<T> {
     /**
      * 执行任务
+     *
      * @param e 异常
      * @return 结果
      */
