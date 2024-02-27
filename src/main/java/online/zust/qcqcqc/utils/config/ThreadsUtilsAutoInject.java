@@ -24,13 +24,24 @@ public class ThreadsUtilsAutoInject {
         ThreadsUtilsAutoInject.applicationContext = applicationContext;
     }
 
-    public static <T> T getBean(Class<T> name) {
+    /**
+     * 通过类型来获取Bean
+     * @param clazz 类型
+     * @return Bean
+     * @param <T> 类型
+     */
+    public static <T> T getBean(Class<T> clazz) {
         if (applicationContext == null) {
             throw new RuntimeException("applicationContext is null");
         }
-        return applicationContext.getBean(name);
+        return applicationContext.getBean(clazz);
     }
 
+    /**
+     * 通过名称来获取Bean
+     * @param name 名称
+     * @return Bean
+     */
     public static Object getBeanByName(String name) {
         if (applicationContext == null) {
             throw new RuntimeException("applicationContext is null");

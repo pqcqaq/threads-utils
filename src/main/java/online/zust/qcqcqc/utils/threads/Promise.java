@@ -1,6 +1,7 @@
 package online.zust.qcqcqc.utils.threads;
 
 import online.zust.qcqcqc.utils.threads.enums.PromiseStatus;
+import online.zust.qcqcqc.utils.threads.tasks.ExceptionHandleTask;
 import online.zust.qcqcqc.utils.threads.tasks.PromisedTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,8 @@ import java.util.function.Consumer;
 
 /**
  * @author qcqcqc
+ * Date: 2024/2/26
+ * Time: 01:06
  */
 public class Promise<T> {
     /**
@@ -43,6 +46,10 @@ public class Promise<T> {
      * 最终回调
      */
     private Consumer<T> finallyCall;
+    /**
+     * 异常处理
+     */
+    private ExceptionHandleTask<T> handleException;
     /**
      * 结果
      */
@@ -160,11 +167,22 @@ public class Promise<T> {
     }
 
     /**
+     * 异常处理
+     *
+     * @param exceptionExceptionHandleTask 回调
+     * @return Promise
+     */
+    public Promise<T> onException(ExceptionHandleTask<T> exceptionExceptionHandleTask) {
+        this.handleException = exceptionExceptionHandleTask;
+        return this;
+    }
+
+    /**
      * 开始执行
      */
     public void startAsync() {
         if (started) {
-            log.warn("尝试start重复启动一个Promise！");
+            log.debug("尝试start重复启动一个Promise！");
             return;
         }
         Runnable promiseTaskLine = getExecutorTask();
@@ -178,6 +196,10 @@ public class Promise<T> {
         PROMISE_EXECUTOR.execute(promiseTaskLine);
     }
 
+    /**
+     * 获取执行任务
+     * @return 任务
+     */
     private Runnable getExecutorTask() {
         return () -> {
             try {
@@ -197,7 +219,9 @@ public class Promise<T> {
                         break;
                 }
             } catch (Exception e) {
-                handleError(e);
+                this.result = handleException(e);
+                // 如果发生异常，就不需要执行错误回调了，因为object一定是null
+//                handleError(e);
             }
             handleFinally();
             countDownLatch.countDown();
@@ -207,13 +231,32 @@ public class Promise<T> {
     /**
      * 同步执行
      */
-    public void startSync() {
+    public T startSync() {
         if (started) {
-            log.warn("尝试start重复启动一个Promise！");
-            return;
+            log.warn("尝试start重复启动一个Promise！将等待异步完成...");
+            return await();
         }
         this.started = true;
         getExecutorTask().run();
+        return getResult();
+    }
+
+    /**
+     * 处理异常
+     *
+     * @param e 异常
+     */
+    private T handleException(Exception e) {
+        T execute = null;
+        if (handleException == null) {
+            return execute;
+        }
+        try {
+            execute = handleException.execute(e);
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+        }
+        return execute;
     }
 
     /**
@@ -281,11 +324,7 @@ public class Promise<T> {
             startAsync();
         }
         // 等待线程池执行完毕
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            log.error(e.getMessage());
-        }
+        waitForFinish();
         return getResult();
     }
 
@@ -297,6 +336,13 @@ public class Promise<T> {
             startAsync();
         }
         // 等待线程池执行完毕
+        waitForFinish();
+    }
+
+    /**
+     * 等待执行完毕
+     */
+    private void waitForFinish() {
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -323,7 +369,7 @@ public class Promise<T> {
             log.debug("try to reBuild a promise that has not started!");
             return this;
         }
-        return new Promise<>(promisedTask).onSucceed(success).onFail(fail).onFinally(finallyCall);
+        return new Promise<>(promisedTask).onSucceed(success).onFail(fail).onFinally(finallyCall).onException(handleException);
     }
 
     /**
@@ -333,6 +379,6 @@ public class Promise<T> {
      * @return Promise
      */
     public Promise<T> changeTask(PromisedTask<T> task) {
-        return new Promise<>(task).onSucceed(success).onFail(fail).onFinally(finallyCall);
+        return new Promise<>(task).onSucceed(success).onFail(fail).onFinally(finallyCall).onException(handleException);
     }
 }

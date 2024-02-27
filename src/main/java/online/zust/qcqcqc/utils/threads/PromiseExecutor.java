@@ -35,6 +35,10 @@ public class PromiseExecutor {
 
     private static Executor promiseExecutor;
 
+    /**
+     * 创建线程池
+     * @return 线程池
+     */
     @Bean(name = "promiseExecutor")
     @ConditionalOnMissingBean(name = "promiseExecutor")
     public Executor threadPoolTaskExecutor() {
@@ -44,9 +48,27 @@ public class PromiseExecutor {
         return executor;
     }
 
+    /**
+     * 手动初始化线程池
+     * @param promiseExecutor 线程池
+     */
+    public static void initExecutor(Executor promiseExecutor) {
+        PromiseExecutor.promiseExecutor = promiseExecutor;
+    }
+
+    /**
+     * 获取线程池
+     * @return 线程池
+     */
     public static Executor getPromiseExecutor() {
         if (promiseExecutor == null) {
-            return (Executor) ThreadsUtilsAutoInject.getBeanByName("promiseExecutor");
+            Executor promiseExecutor1;
+            try {
+                promiseExecutor1 = (Executor) ThreadsUtilsAutoInject.getBeanByName("promiseExecutor");
+            } catch (Exception e) {
+                throw new RuntimeException("promiseExecutor has not been initialized in env, please call PromiseExecutor.initExecutor() first.");
+            }
+            return promiseExecutor1;
         }
         return promiseExecutor;
     }

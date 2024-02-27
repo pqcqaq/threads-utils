@@ -22,6 +22,10 @@ public class ThreadsUtils {
      * @return 线程池
      */
     public static Executor createExecutor(int poolSize, int maxPoolSize, int queueCapacity, int keepAliveSeconds, RejectedExecutionHandler policy, String prefix) {
+//        new ThreadPoolExecutor.AbortPolicy() // 不执行新任务，直接抛出异常，提示线程池已满
+//        new ThreadPoolExecutor.CallerRunsPolicy() // 哪来的去哪里！由调用线程处理该任务
+//        new ThreadPoolExecutor.DiscardPolicy() //不执行新任务，也不抛出异常
+//        new ThreadPoolExecutor.DiscardOldestPolicy() //丢弃队列最前面的任务，然后重新提交被拒绝的任务。
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         // 核心线程数
         executor.setCorePoolSize(poolSize);
@@ -65,7 +69,7 @@ public class ThreadsUtils {
      * @return 线程池
      */
     public static Executor createExecutor(int poolSize, int maxPoolSize, int queueCapacity, String prefix) {
-        return createExecutor(poolSize, maxPoolSize, queueCapacity, 60, new ThreadPoolExecutor.CallerRunsPolicy(), prefix);
+        return createExecutor(poolSize, maxPoolSize, queueCapacity, new ThreadPoolExecutor.CallerRunsPolicy(), prefix);
     }
 
     /**
