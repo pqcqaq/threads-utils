@@ -13,5 +13,5 @@ public interface PromisedTask<T> {
      * @return 结果
      * @throws Exception 异常
      */
-    T execute(Promise.Next status) throws Exception;
+    T execute(Promise.NextStatus status) throws Exception;
 }

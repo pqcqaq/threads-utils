@@ -16,7 +16,11 @@ public enum PromiseStatus {
     /**
      * 已拒绝
      */
-    REJECTED(2, "REJECTED");
+    REJECTED(2, "REJECTED"),
+    /**
+     * 已取消
+     */
+    CANCELED(3, "CANCELED");
 
     private final int code;
     private final String desc;
@@ -29,7 +33,7 @@ public enum PromiseStatus {
     public int getCode() {
         return code;
     }
-    
+
     public String getDesc() {
         return desc;
     }

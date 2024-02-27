@@ -14,4 +14,19 @@ public class Tasks {
         }
         return results;
     }
+
+    public static List<Object> awaitAll(Promise<?>... promises) {
+        List<Object> results = new ArrayList<>();
+        for (Promise<?> promise : promises) {
+            Object await = promise.await();
+            results.add(await);
+        }
+        return results;
+    }
+
+    public static void awaitAllVoid(Promise<?>... promises) {
+        for (Promise<?> promise : promises) {
+            promise.await();
+        }
+    }
 }

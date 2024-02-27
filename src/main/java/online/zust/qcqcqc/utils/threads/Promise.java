@@ -1,6 +1,5 @@
 package online.zust.qcqcqc.utils.threads;
 
-import online.zust.qcqcqc.utils.config.ThreadsUtilsAutoInject;
 import online.zust.qcqcqc.utils.threads.enums.PromiseStatus;
 import online.zust.qcqcqc.utils.threads.tasks.PromisedTask;
 import org.slf4j.Logger;
@@ -19,7 +18,7 @@ public class Promise<T> {
      * 在使用Promise之前需要设置线程池
      * 工具类中自动注入线程池
      */
-    private static final Executor PROMISE_EXECUTOR = ThreadsUtilsAutoInject.getPromiseExecutor();
+    private static final Executor PROMISE_EXECUTOR = PromiseExecutor.getPromiseExecutor();
     /**
      * 设置执行状态，1表示未执行，0表示已执行
      */
@@ -55,7 +54,7 @@ public class Promise<T> {
     /**
      * 下一步状态
      */
-    private final Next next;
+    private final NextStatus nextStatus;
 
     /**
      * 是否已经开始
@@ -65,7 +64,7 @@ public class Promise<T> {
     /**
      * 下一步状态
      */
-    public static class Next {
+    public static class NextStatus {
         /**
          * 状态
          */
@@ -74,7 +73,7 @@ public class Promise<T> {
         /**
          * 构造函数
          */
-        public Next() {
+        public NextStatus() {
             this.status = PromiseStatus.FULFILLED;
         }
 
@@ -95,11 +94,11 @@ public class Promise<T> {
         }
 
         /**
-         * 未决
+         * 取消
          * 下一步直接进入最终回调
          */
         public void terminated() {
-            this.status = PromiseStatus.PENDING;
+            this.status = PromiseStatus.CANCELED;
         }
     }
 
@@ -110,7 +109,7 @@ public class Promise<T> {
      */
     private Promise(PromisedTask<T> promisedTask) {
         // init
-        this.next = new Next();
+        this.nextStatus = new NextStatus();
         this.promisedTask = promisedTask;
         this.countDownLatch = new CountDownLatch(1);
         this.status = PromiseStatus.PENDING;
@@ -163,18 +162,29 @@ public class Promise<T> {
     /**
      * 开始执行
      */
-    public void start() {
+    public void startAsync() {
         if (started) {
             log.warn("尝试start重复启动一个Promise！");
             return;
         }
-        Runnable promiseTaskLine = () -> {
-            this.started = true;
+        Runnable promiseTaskLine = getExecutorTask();
+        this.started = true;
+        if (PROMISE_EXECUTOR == null) {
+            log.error("Promise线程池未设置，使用当前线程执行任务，请检查线程池配置！");
+            promiseTaskLine.run();
+            return;
+        }
+        // 使用线程池执行任务
+        PROMISE_EXECUTOR.execute(promiseTaskLine);
+    }
+
+    private Runnable getExecutorTask() {
+        return () -> {
             try {
-                this.result = promisedTask.execute(next);
-                this.status = this.next.status;
+                this.result = promisedTask.execute(nextStatus);
+                this.status = this.nextStatus.status;
                 switch (this.status) {
-                    case PENDING:
+                    case CANCELED:
                         break;
                     case FULFILLED:
                         handleSuccess();
@@ -192,13 +202,18 @@ public class Promise<T> {
             handleFinally();
             countDownLatch.countDown();
         };
-        if (PROMISE_EXECUTOR == null) {
-            log.error("Promise线程池未设置，使用当前线程执行任务，请检查线程池配置！");
-            promiseTaskLine.run();
+    }
+
+    /**
+     * 同步执行
+     */
+    public void startSync() {
+        if (started) {
+            log.warn("尝试start重复启动一个Promise！");
             return;
         }
-        // 使用线程池执行任务
-        PROMISE_EXECUTOR.execute(promiseTaskLine);
+        this.started = true;
+        getExecutorTask().run();
     }
 
     /**
@@ -253,14 +268,6 @@ public class Promise<T> {
      * @return 结果
      */
     public T getResult() {
-        if (!started) {
-            start();
-        }
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            log.error(e.getMessage());
-        }
         return result;
     }
 
@@ -271,7 +278,7 @@ public class Promise<T> {
      */
     public T await() {
         if (!started) {
-            start();
+            startAsync();
         }
         // 等待线程池执行完毕
         try {
@@ -280,6 +287,21 @@ public class Promise<T> {
             log.error(e.getMessage());
         }
         return getResult();
+    }
+
+    /**
+     * 等待执行完毕
+     */
+    public void waitFinish() {
+        if (!started) {
+            startAsync();
+        }
+        // 等待线程池执行完毕
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+        }
     }
 
     /**
@@ -293,14 +315,20 @@ public class Promise<T> {
 
     /**
      * 重新构建
+     *
      * @return Promise
      */
     public Promise<T> reBuild() {
+        if (!started) {
+            log.debug("try to reBuild a promise that has not started!");
+            return this;
+        }
         return new Promise<>(promisedTask).onSucceed(success).onFail(fail).onFinally(finallyCall);
     }
 
     /**
      * 更改任务
+     *
      * @param task 任务
      * @return Promise
      */
