@@ -37,6 +37,7 @@ public class PromiseExecutor {
 
     /**
      * 创建线程池
+     *
      * @return 线程池
      */
     @Bean(name = "promiseExecutor")
@@ -44,12 +45,13 @@ public class PromiseExecutor {
     public Executor threadPoolTaskExecutor() {
         log.info("start promiseExecutor");
         Executor executor = ThreadsUtils.createExecutor(corePoolSize, maxPoolSize, queueCapacity, keepAliveSeconds, new ThreadPoolExecutor.CallerRunsPolicy(), threadNamePrefix);
-        promiseExecutor = executor;
+        initExecutor(executor);
         return executor;
     }
 
     /**
      * 手动初始化线程池
+     *
      * @param promiseExecutor 线程池
      */
     public static void initExecutor(Executor promiseExecutor) {
@@ -58,6 +60,7 @@ public class PromiseExecutor {
 
     /**
      * 获取线程池
+     *
      * @return 线程池
      */
     public static Executor getPromiseExecutor() {

@@ -44,6 +44,7 @@ public class ThreadsUtilsAutoInject {
      */
     public static Object getBeanByName(String name) {
         if (applicationContext == null) {
+            log.error("applicationContext is null");
             throw new RuntimeException("applicationContext is null");
         }
         return applicationContext.getBean(name);

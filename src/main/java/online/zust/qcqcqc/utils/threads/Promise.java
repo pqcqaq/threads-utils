@@ -198,6 +198,7 @@ public class Promise<T> {
 
     /**
      * 获取执行任务
+     *
      * @return 任务
      */
     private Runnable getExecutorTask() {
@@ -249,6 +250,7 @@ public class Promise<T> {
     private T handleException(Exception e) {
         T execute = null;
         if (handleException == null) {
+            log.error("Promise error Not captured：{}", e.getMessage());
             return execute;
         }
         try {
