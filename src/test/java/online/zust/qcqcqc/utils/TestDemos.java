@@ -180,4 +180,9 @@ public class TestDemos {
             }
         };
     }
+
+    @Test
+    public void testTimeout() {
+        Tasks.setTimeout(() -> System.out.println("end wait....."), 2000).startSync();
+    }
 }
