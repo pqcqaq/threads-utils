@@ -27,6 +27,7 @@ public class Tasks {
 
     /**
      * 等待所有任务完成
+     *
      * @param promises 任务列表
      * @return 结果列表
      */
@@ -44,6 +45,7 @@ public class Tasks {
 
     /**
      * 等待所有任务完成
+     *
      * @param promises 任务列表
      */
     public static void awaitAllVoid(Promise<?>... promises) {
@@ -63,9 +65,9 @@ public class Tasks {
      * @return Promise
      */
     public static Promise<?> setTimeout(VoidTask task, long timeout) {
-        return Promise.resolve((status -> {
+        return Promise.resolve(() -> {
             Thread.sleep(timeout);
             return null;
-        })).onSucceed((res) -> task.run());
+        }).onSucceed((res) -> task.run());
     }
 }
