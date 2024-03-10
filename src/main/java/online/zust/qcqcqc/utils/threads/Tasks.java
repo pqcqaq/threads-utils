@@ -9,9 +9,10 @@ import java.util.List;
 public class Tasks {
     /**
      * 等待所有任务完成
+     *
      * @param promises 任务列表
+     * @param <T>      结果类型
      * @return 结果列表
-     * @param <T> 结果类型
      */
     public static <T> List<T> awaitAll(List<Promise<T>> promises) {
         List<T> results = new ArrayList<>();
@@ -24,6 +25,7 @@ public class Tasks {
 
     /**
      * 等待所有任务完成
+     *
      * @param promises 任务列表
      * @return 结果列表
      */
@@ -41,6 +43,7 @@ public class Tasks {
 
     /**
      * 等待所有任务完成
+     *
      * @param promises 任务列表
      */
     public static void awaitAllVoid(Promise<?>... promises) {
@@ -50,5 +53,13 @@ public class Tasks {
         for (Promise<?> promise : promises) {
             promise.waitFinish();
         }
+    }
+
+    public static Promise<?> setTimeout(Runnable runnable, long timeout) {
+        return Promise.resolve((status) -> {
+            Thread.sleep(timeout);
+            runnable.run();
+            return null;
+        });
     }
 }

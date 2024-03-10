@@ -6,6 +6,7 @@ import online.zust.qcqcqc.utils.threads.tasks.PromisedTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
@@ -135,6 +136,30 @@ public class Promise<T> {
     }
 
     /**
+     * 创建一个Promise
+     *
+     * @param consumer 任务
+     * @param <T>      泛型
+     * @return Promise
+     */
+    public static <T> Promise<T> resolve(Callable<T> consumer) {
+        return new Promise<>((status) -> consumer.call());
+    }
+
+    /**
+     * 创建一个Promise
+     *
+     * @param consumer 任务
+     * @return Promise
+     */
+    public static Promise<?> resolve(Runnable consumer) {
+        return new Promise<>((status) -> {
+            consumer.run();
+            return null;
+        });
+    }
+
+    /**
      * 成功回调
      *
      * @param consumer 回调
@@ -223,9 +248,12 @@ public class Promise<T> {
                 this.result = handleException(e);
                 // 如果发生异常，就不需要执行错误回调了，因为object一定是null
 //                handleError(e);
+            } finally {
+                handleFinally();
+                countDownLatch.countDown();
             }
-            handleFinally();
-            countDownLatch.countDown();
+//            handleFinally();
+//            countDownLatch.countDown();
         };
     }
 

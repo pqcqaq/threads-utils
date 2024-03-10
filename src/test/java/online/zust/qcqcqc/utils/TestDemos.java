@@ -180,4 +180,11 @@ public class TestDemos {
             }
         };
     }
+
+    @Test
+    public void testTimeout() {
+        Promise<?> timeout = Tasks.setTimeout(() -> System.out.println("timeout"), 3000);
+        timeout.startAsync();
+        timeout.await();
+    }
 }
