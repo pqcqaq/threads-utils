@@ -1,5 +1,7 @@
 package online.zust.qcqcqc.utils.threads;
 
+import online.zust.qcqcqc.utils.threads.tasks.VoidTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,6 @@ public class Tasks {
 
     /**
      * 等待所有任务完成
-     *
      * @param promises 任务列表
      * @return 结果列表
      */
@@ -43,7 +44,6 @@ public class Tasks {
 
     /**
      * 等待所有任务完成
-     *
      * @param promises 任务列表
      */
     public static void awaitAllVoid(Promise<?>... promises) {
@@ -55,11 +55,17 @@ public class Tasks {
         }
     }
 
-    public static Promise<?> setTimeout(Runnable runnable, long timeout) {
-        return Promise.resolve((status) -> {
+    /**
+     * 设置定时任务
+     *
+     * @param task    任务
+     * @param timeout 超时时间
+     * @return Promise
+     */
+    public static Promise<?> setTimeout(VoidTask task, long timeout) {
+        return Promise.resolve((status -> {
             Thread.sleep(timeout);
-            runnable.run();
             return null;
-        });
+        })).onSucceed((res) -> task.run());
     }
 }
