@@ -203,6 +203,9 @@ public class TestDemos {
             System.out.println("任务全部完成");
         });
         taskList.startAllAsync();
-        Thread.sleep(5000);
+        Thread.sleep(100);
+        int unfinishedTaskCount = taskList.getUnfinishedTaskCount();
+        System.out.println("未完成任务数量：" + unfinishedTaskCount);
+        Thread.sleep(2000);
     }
 }
