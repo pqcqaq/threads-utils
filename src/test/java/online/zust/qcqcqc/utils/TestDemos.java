@@ -187,4 +187,22 @@ public class TestDemos {
         timeout.startAsync();
         timeout.await();
     }
+
+    @Test
+    public void testNullTask() throws Exception {
+        Promise<Object> resolve = Promise.resolve(() -> {
+            return null;
+        });
+        Tasks.TaskList<Object> taskList = Tasks.createTaskList();
+        taskList.add(resolve);
+        taskList.add(() -> {
+            Thread.sleep(1000);
+            return null;
+        });
+        taskList.onTasksFinish(() -> {
+            System.out.println("任务全部完成");
+        });
+        taskList.startAllAsync();
+        Thread.sleep(5000);
+    }
 }

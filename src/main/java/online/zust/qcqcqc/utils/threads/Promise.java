@@ -411,4 +411,22 @@ public class Promise<T> {
     public Promise<T> changeTask(PromisedTask<T> task) {
         return new Promise<>(task).onSucceed(success).onFail(fail).onFinally(finallyCall).onException(handleException);
     }
+
+    /**
+     * 是否已经开始
+     *
+     * @return 是否已经开始
+     */
+    public boolean isStarted() {
+        return started;
+    }
+
+    /**
+     * 是否已经完成
+     *
+     * @return 是否已经完成
+     */
+    public boolean isDone() {
+        return countDownLatch.getCount() == 0;
+    }
 }
