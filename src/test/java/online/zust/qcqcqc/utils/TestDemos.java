@@ -206,6 +206,23 @@ public class TestDemos {
         Thread.sleep(100);
         int unfinishedTaskCount = taskList.getUnfinishedTaskCount();
         System.out.println("未完成任务数量：" + unfinishedTaskCount);
-        Thread.sleep(2000);
+        taskList.awaitAll();
+    }
+
+    @Test
+    public void testProgressCallback() {
+        Tasks.TaskList<Integer> taskList = Tasks.createTaskList();
+        for (int i = 0; i < 10; i++) {
+            taskList.add(() -> {
+                int millis = new Random().nextInt(1000);
+                Thread.sleep(millis);
+                return millis;
+            });
+        }
+        taskList.addShowProgress();
+        taskList.onTasksFinish(() -> System.out.println("任务全部完成"));
+        taskList.startAllAsync();
+        List<Integer> integers = taskList.awaitAll();
+        System.out.println("任务结果：" + integers);
     }
 }

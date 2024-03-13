@@ -1,6 +1,9 @@
 package online.zust.qcqcqc.utils.threads;
 
+import online.zust.qcqcqc.utils.threads.tasks.ProgressHandler;
 import online.zust.qcqcqc.utils.threads.tasks.VoidTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,8 @@ public class Tasks {
      */
     public static class TaskList<T> {
         private final List<Promise<T>> tasks = new ArrayList<>();
+        private boolean startedAll = false;
+        private static final Logger log = LoggerFactory.getLogger(Tasks.class);
 
         /**
          * 添加任务
@@ -46,7 +51,19 @@ public class Tasks {
          * @return 任务列表
          */
         public List<T> awaitAll() {
-            return Tasks.awaitAll(tasks);
+            List<T> results = new ArrayList<>();
+            if (!startedAll) {
+                for (Promise<T> tPromise : tasks) {
+                    if (!tPromise.isDone()) {
+                        tPromise.startAsync();
+                    }
+                }
+            }
+            startedAll = true;
+            for (Promise<T> promise : tasks) {
+                results.add(promise.waitForResult());
+            }
+            return results;
         }
 
         /**
@@ -54,6 +71,7 @@ public class Tasks {
          */
         public void startAllAsync() {
             tasks.forEach(Promise::startAsync);
+            startedAll = true;
         }
 
         /**
@@ -81,15 +99,61 @@ public class Tasks {
         }
 
         /**
+         * 等待所有任务完成
+         */
+        private void awaitAllForDone() {
+            for (Promise<T> promise : tasks) {
+                promise.waitForResult();
+            }
+        }
+
+        /**
          * 添加任务全部完成回调
          *
          * @param task 任务
          */
         public void onTasksFinish(VoidTask task) {
             Promise.resolve(() -> {
-                Tasks.awaitAll(tasks);
+                this.awaitAllForDone();
                 return null;
             }).onSucceed((res) -> task.run()).startAsync();
+        }
+
+        /**
+         * 添加单个任务完成回调
+         *
+         * @param task 任务
+         */
+        public void onProgressCallback(Runnable task) {
+            tasks.forEach((promise) -> promise.addFinishCallBack(task));
+        }
+
+        /**
+         * 是否所有任务已经开始
+         *
+         * @return 是否所有任务已经开始
+         */
+        public boolean isTasksStarted() {
+            return startedAll;
+        }
+
+        /**
+         * 添加进度显示
+         *
+         * @param task 任务
+         */
+        public void onShowProgress(ProgressHandler task) {
+            tasks.forEach((promise) -> promise.addFinishCallBack(() -> {
+                // 这里因为当前任务就算已经完成，但是还没有执行回调，所以需要+1
+                task.handle(getTaskCount() - getUnfinishedTaskCount() + 1, getTaskCount());
+            }));
+        }
+
+        /**
+         * 添加进度显示
+         */
+        public void addShowProgress() {
+            onShowProgress((done, total) -> log.info("当前执行的线程{}，任务进度：{}/{}", Thread.currentThread().getName(), done, total));
         }
     }
 
@@ -112,9 +176,13 @@ public class Tasks {
      */
     public static <T> List<T> awaitAll(List<Promise<T>> promises) {
         List<T> results = new ArrayList<>();
-        promises.forEach(Promise::startAsync);
+        for (Promise<T> tPromise : promises) {
+            if (!tPromise.isDone()) {
+                tPromise.startAsync();
+            }
+        }
         for (Promise<T> promise : promises) {
-            results.add(promise.await());
+            results.add(promise.waitForResult());
         }
         return results;
     }
@@ -144,7 +212,9 @@ public class Tasks {
      */
     public static void awaitAllVoid(Promise<?>... promises) {
         for (Promise<?> promise : promises) {
-            promise.startAsync();
+            if (!promise.isDone()) {
+                promise.startAsync();
+            }
         }
         for (Promise<?> promise : promises) {
             promise.waitFinish();

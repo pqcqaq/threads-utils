@@ -381,6 +381,15 @@ public class Promise<T> {
     }
 
     /**
+     * 等待结果
+     * @return 结果
+     */
+    public T waitForResult() {
+        waitForFinish();
+        return getResult();
+    }
+
+    /**
      * 获取状态
      *
      * @return 状态
@@ -428,5 +437,23 @@ public class Promise<T> {
      */
     public boolean isDone() {
         return countDownLatch.getCount() == 0;
+    }
+
+    /**
+     * 添加完成回调
+     */
+    protected void addFinishCallBack(Runnable runnable) {
+        if (isDone()) {
+            throw new RuntimeException("Promise has already done, cannot add finish callback!");
+        }
+        Consumer<T> finallyCalled = this.finallyCall;
+        this.finallyCall = (result) -> {
+            if (finallyCalled == null) {
+                runnable.run();
+            } else {
+                this.finallyCall.accept(result);
+                runnable.run();
+            }
+        };
     }
 }
