@@ -1,3 +1,0 @@
-## AutoConfiguration
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  online.zust.qcqcqc.utils.config.ThreadsUtilsAutoInject
