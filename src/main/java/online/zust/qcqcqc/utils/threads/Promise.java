@@ -232,17 +232,11 @@ public class Promise<T> {
                 this.result = promisedTask.execute(nextStatus);
                 this.status = this.nextStatus.status;
                 switch (this.status) {
-                    case CANCELED:
-                        break;
-                    case FULFILLED:
-                        handleSuccess();
-                        break;
-                    case REJECTED:
-                        handleError(new RuntimeException("Promise rejected by user"));
-                        break;
-                    default:
-                        handleSuccess();
-                        break;
+                    case CANCELED -> {
+                    }
+                    case FULFILLED -> handleSuccess();
+                    case REJECTED -> handleError(new RuntimeException("Promise rejected by user"));
+                    default -> handleSuccess();
                 }
             } catch (Exception e) {
                 this.result = handleException(e);
