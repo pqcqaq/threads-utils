@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -230,7 +229,7 @@ public class TestDemos {
     @Test
     public void testStartWithMultiThreads1() {
         List<Integer> integers = new ArrayList<>();
-        Tasks.startWithMultiThreads(List.of(1, 2, 3, 4, 5), (item) -> {
+        Tasks.startWithMultiThreadsSync(List.of(1, 2, 3, 4, 5), (item) -> {
             System.out.println("执行任务：" + item);
             integers.add(item);
         });

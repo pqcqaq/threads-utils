@@ -241,7 +241,7 @@ public class Tasks {
      * @param task  任务
      * @param <T>   任务类型
      */
-    public static <T> void startWithMultiThreads(List<T> items, SingleTask<T> task) {
+    public static <T> void startWithMultiThreadsSync(List<T> items, SingleTask<T> task) {
         TaskList<T> taskList = createTaskList();
         for (T item : items) {
             taskList.add(Promise.resolve(() -> {
@@ -249,7 +249,7 @@ public class Tasks {
                 return null;
             }));
         }
-        taskList.startAllAsync();
+        taskList.awaitAll();
     }
 
     /**
@@ -260,7 +260,7 @@ public class Tasks {
      * @param exceptionHandleTask 异常处理任务
      * @param <T>                 任务类型
      */
-    public static <T> void startWithMultiThreads(List<T> items, SingleTask<T> task, SingleTask<RuntimeException> exceptionHandleTask) {
+    public static <T> void startWithMultiThreadsSync(List<T> items, SingleTask<T> task, SingleTask<RuntimeException> exceptionHandleTask) {
         TaskList<T> taskList = createTaskList();
         for (T item : items) {
             taskList.add(
