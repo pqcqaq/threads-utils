@@ -1,7 +1,6 @@
 package online.zust.qcqcqc.utils.threads;
 
-import online.zust.qcqcqc.utils.threads.tasks.ProgressHandler;
-import online.zust.qcqcqc.utils.threads.tasks.VoidTask;
+import online.zust.qcqcqc.utils.threads.tasks.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -233,5 +232,127 @@ public class Tasks {
             Thread.sleep(timeout);
             return null;
         }).onSucceed((res) -> task.run());
+    }
+
+    /**
+     * 使用多线程执行任务
+     *
+     * @param items 任务列表
+     * @param task  任务
+     * @param <T>   任务类型
+     */
+    public static <T> void startWithMultiThreads(List<T> items, SingleTask<T> task) {
+        TaskList<T> taskList = createTaskList();
+        for (T item : items) {
+            taskList.add(Promise.resolve(() -> {
+                task.execute(item);
+                return null;
+            }));
+        }
+        taskList.startAllAsync();
+    }
+
+    /**
+     * 使用多线程执行任务
+     *
+     * @param items               任务列表
+     * @param task                任务
+     * @param exceptionHandleTask 异常处理任务
+     * @param <T>                 任务类型
+     */
+    public static <T> void startWithMultiThreads(List<T> items, SingleTask<T> task, SingleTask<RuntimeException> exceptionHandleTask) {
+        TaskList<T> taskList = createTaskList();
+        for (T item : items) {
+            taskList.add(
+                    Promise.resolve(() -> {
+                        task.execute(item);
+                        return item;
+                    }).onException((e) -> {
+                        exceptionHandleTask.execute(new RuntimeException(e));
+                        return item;
+                    })
+            );
+        }
+        taskList.startAllAsync();
+    }
+
+    /**
+     * 使用多线程执行任务
+     *
+     * @param items 任务列表
+     * @param task  任务
+     * @param <T>   任务类型
+     * @param <R>   结果类型
+     * @return 任务列表
+     */
+    public static <T, R> List<Promise<R>> startWithMultiThreadsAsync(List<T> items, CallBackTask<T, R> task) {
+        TaskList<R> taskList = createTaskList();
+        for (T item : items) {
+            taskList.add(Promise.resolve(() -> task.execute(item)));
+        }
+        taskList.startAllAsync();
+        return taskList.tasks;
+    }
+
+    /**
+     * 使用多线程执行任务
+     *
+     * @param items               任务列表
+     * @param task                任务
+     * @param exceptionHandleTask 异常处理任务
+     * @param <T>                 任务类型
+     * @param <R>                 结果类型
+     * @return 任务列表
+     */
+    public static <T, R> List<Promise<R>> startWithMultiThreadsAsync(List<T> items, CallBackTask<T, R> task, ExceptionHandleTask<R> exceptionHandleTask) {
+        TaskList<R> taskList = createTaskList();
+        for (T item : items) {
+            taskList.add(
+                    Promise.resolve(() -> task.execute(item))
+                            .onException(exceptionHandleTask)
+            );
+        }
+        taskList.startAllAsync();
+        return taskList.tasks;
+    }
+
+    /**
+     * 使用多线程执行任务
+     *
+     * @param items 任务列表
+     * @param task  任务
+     * @param <T>   任务类型
+     * @param <R>   结果类型
+     * @return 任务列表
+     */
+    public static <T, R> List<R> startWithMultiThreadsSync(List<T> items, CallBackTask<T, R> task) {
+        TaskList<R> taskList = createTaskList();
+        for (T item : items) {
+            taskList.add(Promise.resolve(() -> task.execute(item)));
+        }
+        taskList.startAllAsync();
+        return taskList.awaitAll();
+    }
+
+    /**
+     * 使用多线程执行任务
+     *
+     * @param items               任务列表
+     * @param task                任务
+     * @param exceptionHandleTask 异常处理任务
+     * @param <T>                 任务类型
+     * @param <R>                 结果类型
+     * @return 任务列表
+     */
+    public static <T, R> List<R> startWithMultiThreadsSync(List<T> items, CallBackTask<T, R> task, ExceptionHandleTask<R> exceptionHandleTask) {
+        TaskList<R> taskList = createTaskList();
+        for (T item : items) {
+            taskList.add(
+                    Promise.resolve(() -> task.execute(item))
+                            .onException(exceptionHandleTask)
+            );
+        }
+        taskList.startAllAsync();
+        return taskList.awaitAll();
     }
 }

@@ -1,0 +1,37 @@
+{
+  "groups": [],
+  "properties": [
+    {
+      "name": "promise.executor.corePoolSize",
+      "type": "java.lang.Integer",
+      "value": "10",
+      "description": "Promise执行器核心线程数."
+    },
+    {
+      "name": "promise.executor.maxPoolSize",
+      "type": "java.lang.Integer",
+      "value": "100",
+      "description": "Promise执行器最大线程数."
+    },
+    {
+      "name": "promise.executor.keepAliveTime",
+      "type": "java.lang.Long",
+      "value": "60",
+      "description": "Promise执行器线程空闲时间."
+    },
+    {
+      "name": "promise.executor.queueCapacity",
+      "type": "java.lang.Integer",
+      "value": "1000",
+      "description": "Promise执行器队列容量."
+    },
+    {
+      "name": "promise.executor.threadNamePrefix",
+      "type": "java.lang.String",
+      "value": "promise-executor",
+      "description": "Promise执行器线程名称前缀."
+    }
+  ],
+  "hints": [
+  ]
+}
