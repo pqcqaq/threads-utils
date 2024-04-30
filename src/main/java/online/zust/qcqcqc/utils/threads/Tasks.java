@@ -285,13 +285,13 @@ public class Tasks {
      * @param <R>   结果类型
      * @return 任务列表
      */
-    public static <T, R> List<Promise<R>> startWithMultiThreadsAsync(List<T> items, CallBackTask<T, R> task) {
+    public static <T, R> TaskList<R> startWithMultiThreadsAsync(List<T> items, CallBackTask<T, R> task) {
         TaskList<R> taskList = createTaskList();
         for (T item : items) {
             taskList.add(Promise.resolve(() -> task.execute(item)));
         }
         taskList.startAllAsync();
-        return taskList.tasks;
+        return taskList;
     }
 
     /**
@@ -304,7 +304,7 @@ public class Tasks {
      * @param <R>                 结果类型
      * @return 任务列表
      */
-    public static <T, R> List<Promise<R>> startWithMultiThreadsAsync(List<T> items, CallBackTask<T, R> task, ExceptionHandleTask<R> exceptionHandleTask) {
+    public static <T, R> TaskList<R> startWithMultiThreadsAsync(List<T> items, CallBackTask<T, R> task, ExceptionHandleTask<R> exceptionHandleTask) {
         TaskList<R> taskList = createTaskList();
         for (T item : items) {
             taskList.add(
@@ -313,7 +313,7 @@ public class Tasks {
             );
         }
         taskList.startAllAsync();
-        return taskList.tasks;
+        return taskList;
     }
 
     /**
