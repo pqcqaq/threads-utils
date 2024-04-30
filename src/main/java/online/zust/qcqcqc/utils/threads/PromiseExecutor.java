@@ -4,6 +4,7 @@ import online.zust.qcqcqc.utils.ThreadsUtils;
 import online.zust.qcqcqc.utils.config.ThreadsUtilsAutoInject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -18,7 +19,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Component
 @ConfigurationProperties(prefix = "promise.executor")
-public class PromiseExecutor {
+public class PromiseExecutor implements DisposableBean {
 
     @Value("${promise.executor.core-pool-size:16}")
     private Integer corePoolSize;
@@ -74,5 +75,14 @@ public class PromiseExecutor {
             return promiseExecutor1;
         }
         return promiseExecutor;
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        if (promiseExecutor instanceof ThreadPoolExecutor) {
+            ((ThreadPoolExecutor) promiseExecutor).shutdown();
+        } else {
+            log.warn("promiseExecutor is not ThreadPoolExecutor, cannot shutdown.");
+        }
     }
 }
