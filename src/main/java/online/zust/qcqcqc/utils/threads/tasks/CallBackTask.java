@@ -12,6 +12,7 @@ public interface CallBackTask<P, R> {
      *
      * @param p 参数
      * @return 结果
+     * @throws RuntimeException 异常
      */
-    R execute(P p) throws InterruptedException;
+    R execute(P p) throws RuntimeException;
 }

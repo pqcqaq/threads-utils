@@ -4,6 +4,7 @@ package online.zust.qcqcqc.utils;
 import online.zust.qcqcqc.utils.threads.Promise;
 import online.zust.qcqcqc.utils.threads.PromiseExecutor;
 import online.zust.qcqcqc.utils.threads.Tasks;
+import online.zust.qcqcqc.utils.threads.enums.PromiseStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +44,12 @@ public class TestDemos {
                 .onFinally((res) -> System.out.println("返回结果为" + res + "，进入finally回调"));
         stringPromise.startAsync();
         System.out.println("主线程已完成，等待3秒钟");
+        boolean started = stringPromise.isStarted();
+        System.out.println("Promise是否已启动：" + started);
         Thread.sleep(3000);
         System.out.println("尝试获取Promise结果");
+        boolean done = stringPromise.isDone();
+        System.out.println("Promise是否已完成：" + done);
         String await = stringPromise.await();
         System.out.println("Promise结果为：" + await);
 
@@ -153,6 +158,32 @@ public class TestDemos {
 
 
     @Test
+    public void testSimple2() {
+        Promise<?> resolve = Promise.resolve(() -> {
+                    System.out.println("start promise....");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }).onSucceed((res) -> System.out.println("返回结果为" + res + "，进入成功回调"))
+                .onFail((res) -> System.out.println("返回结果为" + res + "，进入失败回调"))
+                .onException((e) -> {
+                    System.out.println("返回结果为" + e + "，进入异常回调");
+                    return null;
+                })
+                .onFinally((res) -> System.out.println("返回结果为" + res + "，进入finally回调"));
+        resolve.startAsync();
+        PromiseStatus status = resolve.getStatus();
+        System.out.println(status.getCode());
+        System.out.println(status.getDesc());
+        resolve.startAsync();
+        resolve.startSync();
+        resolve.await();
+    }
+
+
+    @Test
     public void testException() {
         Promise<Integer> resolve = Promise.resolve((status) -> {
                     System.out.println("start promise....");
@@ -190,18 +221,14 @@ public class TestDemos {
 
     @Test
     public void testNullTask() throws Exception {
-        Promise<Object> resolve = Promise.resolve(() -> {
-            return null;
-        });
+        Promise<Object> resolve = Promise.resolve(() -> null);
         Tasks.TaskList<Object> taskList = Tasks.createTaskList();
         taskList.add(resolve);
         taskList.add(() -> {
             Thread.sleep(1000);
             return null;
         });
-        taskList.onTasksFinish(() -> {
-            System.out.println("任务全部完成");
-        });
+        taskList.onTasksFinish(() -> System.out.println("任务全部完成"));
         taskList.startAllAsync();
         Thread.sleep(100);
         int unfinishedTaskCount = taskList.getUnfinishedTaskCount();
@@ -240,8 +267,64 @@ public class TestDemos {
     public void testStartWithMultiThreads2() {
         List<String> strings = Tasks.startWithMultiThreadsSync(List.of(1, 2, 3, 4, 5), (item) -> {
             System.out.println("执行任务：" + item);
-            SECONDS.sleep(1);
+            try {
+                SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return String.valueOf(item);
+        });
+        System.out.println("任务结果：" + strings);
+    }
+
+    @Test
+    public void testStartWithMultiThreads3() {
+        Tasks.TaskList<String> stringTaskList = Tasks.startWithMultiThreadsAsync(List.of(1, 2, 3, 4, 5), (item) -> {
+            System.out.println("执行任务：" + item);
+            try {
+                SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return String.valueOf(item);
+        });
+        stringTaskList.onShowProgress((done, total) -> System.out.println("已完成任务数：" + done + "，总任务数：" + total));
+        stringTaskList.onTasksFinish(() -> System.out.println("任务全部完成"));
+        stringTaskList.awaitAll();
+    }
+
+    @Test
+    public void testStartWithMultiThreadsWithExceptionHandler() {
+        Tasks.TaskList<String> stringTaskList = Tasks.startWithMultiThreadsAsync(List.of(1, 2, 3, 4, 5), (item) -> {
+            System.out.println("执行任务：" + item);
+            try {
+                SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return String.valueOf(item);
+        }, (e) -> {
+            System.out.println("任务执行出错：" + e.getMessage());
+            return "error";
+        });
+        stringTaskList.onShowProgress((done, total) -> System.out.println("已完成任务数：" + done + "，总任务数：" + total));
+        stringTaskList.onTasksFinish(() -> System.out.println("任务全部完成"));
+        stringTaskList.awaitAll();
+    }
+
+    @Test
+    public void testStartWithMultiThreadsWithExceptionHandler2() {
+        List<String> strings = Tasks.startWithMultiThreadsSync(List.of(1, 2, 3, 4, 5), (item) -> {
+            System.out.println("执行任务：" + item);
+            try {
+                SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return String.valueOf(item);
+        }, (e) -> {
+            System.out.println("任务执行出错：" + e.getMessage());
+            return "error";
         });
         System.out.println("任务结果：" + strings);
     }

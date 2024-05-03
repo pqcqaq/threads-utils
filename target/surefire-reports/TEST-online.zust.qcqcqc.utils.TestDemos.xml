@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="online.zust.qcqcqc.utils.TestDemos" time="19.134" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="online.zust.qcqcqc.utils.TestDemos" time="19.93" tests="12" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="17"/>
+    <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.class.path" value="D:\Develop\JavaDevelop\qc-tools\threads-utils\target\test-classes;D:\Develop\JavaDevelop\qc-tools\threads-utils\target\classes;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-web\2.7.6\spring-boot-starter-web-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter\2.7.6\spring-boot-starter-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot\2.7.6\spring-boot-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-logging\2.7.6\spring-boot-starter-logging-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\logging\log4j\log4j-to-slf4j\2.17.2\log4j-to-slf4j-2.17.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\logging\log4j\log4j-api\2.17.2\log4j-api-2.17.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\slf4j\jul-to-slf4j\1.7.36\jul-to-slf4j-1.7.36.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-core\5.3.24\spring-core-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-jcl\5.3.24\spring-jcl-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\yaml\snakeyaml\1.30\snakeyaml-1.30.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-json\2.7.6\spring-boot-starter-json-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\core\jackson-databind\2.13.4.2\jackson-databind-2.13.4.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\core\jackson-annotations\2.13.4\jackson-annotations-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\core\jackson-core\2.13.4\jackson-core-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.13.4\jackson-datatype-jdk8-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.4\jackson-datatype-jsr310-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.13.4\jackson-module-parameter-names-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-tomcat\2.7.6\spring-boot-starter-tomcat-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\tomcat\embed\tomcat-embed-core\9.0.69\tomcat-embed-core-9.0.69.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\tomcat\embed\tomcat-embed-el\9.0.69\tomcat-embed-el-9.0.69.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\tomcat\embed\tomcat-embed-websocket\9.0.69\tomcat-embed-websocket-9.0.69.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-web\5.3.24\spring-web-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-beans\5.3.24\spring-beans-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-webmvc\5.3.24\spring-webmvc-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-aop\5.3.24\spring-aop-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-context\5.3.24\spring-context-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-expression\5.3.24\spring-expression-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-boot-starter\3.5.5\mybatis-plus-boot-starter-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus\3.5.5\mybatis-plus-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-core\3.5.5\mybatis-plus-core-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-annotation\3.5.5\mybatis-plus-annotation-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-extension\3.5.5\mybatis-plus-extension-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\mybatis\mybatis\3.5.15\mybatis-3.5.15.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\github\jsqlparser\jsqlparser\4.6\jsqlparser-4.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\mybatis\mybatis-spring\2.1.2\mybatis-spring-2.1.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-spring-boot-autoconfigure\3.5.5\mybatis-plus-spring-boot-autoconfigure-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-autoconfigure\2.7.6\spring-boot-autoconfigure-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-jdbc\2.7.6\spring-boot-starter-jdbc-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-jdbc\5.3.24\spring-jdbc-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-tx\5.3.24\spring-tx-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
+    <property name="java.class.path" value="D:\Develop\JavaProgram\qc-tools\threads-utils\target\test-classes;D:\Develop\JavaProgram\qc-tools\threads-utils\target\classes;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-web\2.7.6\spring-boot-starter-web-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter\2.7.6\spring-boot-starter-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot\2.7.6\spring-boot-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-autoconfigure\2.7.6\spring-boot-autoconfigure-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-logging\2.7.6\spring-boot-starter-logging-2.7.6.jar;E:\maven\maven_repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar;E:\maven\maven_repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar;E:\maven\maven_repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;E:\maven\maven_repository\org\apache\logging\log4j\log4j-to-slf4j\2.17.2\log4j-to-slf4j-2.17.2.jar;E:\maven\maven_repository\org\apache\logging\log4j\log4j-api\2.17.2\log4j-api-2.17.2.jar;E:\maven\maven_repository\org\slf4j\jul-to-slf4j\1.7.36\jul-to-slf4j-1.7.36.jar;E:\maven\maven_repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;E:\maven\maven_repository\org\springframework\spring-core\5.3.24\spring-core-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-jcl\5.3.24\spring-jcl-5.3.24.jar;E:\maven\maven_repository\org\yaml\snakeyaml\1.30\snakeyaml-1.30.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-json\2.7.6\spring-boot-starter-json-2.7.6.jar;E:\maven\maven_repository\com\fasterxml\jackson\core\jackson-databind\2.13.4.2\jackson-databind-2.13.4.2.jar;E:\maven\maven_repository\com\fasterxml\jackson\core\jackson-annotations\2.13.4\jackson-annotations-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\core\jackson-core\2.13.4\jackson-core-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.13.4\jackson-datatype-jdk8-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.4\jackson-datatype-jsr310-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.13.4\jackson-module-parameter-names-2.13.4.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-tomcat\2.7.6\spring-boot-starter-tomcat-2.7.6.jar;E:\maven\maven_repository\org\apache\tomcat\embed\tomcat-embed-core\9.0.69\tomcat-embed-core-9.0.69.jar;E:\maven\maven_repository\org\apache\tomcat\embed\tomcat-embed-el\9.0.69\tomcat-embed-el-9.0.69.jar;E:\maven\maven_repository\org\apache\tomcat\embed\tomcat-embed-websocket\9.0.69\tomcat-embed-websocket-9.0.69.jar;E:\maven\maven_repository\org\springframework\spring-web\5.3.24\spring-web-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-beans\5.3.24\spring-beans-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-webmvc\5.3.24\spring-webmvc-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-aop\5.3.24\spring-aop-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-context\5.3.24\spring-context-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-expression\5.3.24\spring-expression-5.3.24.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;E:\maven\maven_repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;E:\maven\maven_repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;E:\maven\maven_repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;E:\maven\maven_repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Asia/Shanghai"/>
     <property name="os.name" value="Windows 11"/>
-    <property name="java.vm.specification.version" value="17"/>
+    <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CN"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17.0.4.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\pqcmm\AppData\Local\Temp\surefire14923819122656825606\surefirebooter-20240407150513507_3.jar C:\Users\pqcmm\AppData\Local\Temp\surefire14923819122656825606 2024-04-07T15-05-13_228-jvmRun1 surefire-20240407150513507_1tmp surefire_0-20240407150513507_2tmp"/>
+    <property name="sun.boot.library.path" value="D:\Develop\Dependency\graalvm\graalvm-jdk-21+35.1\bin"/>
+    <property name="sun.java.command" value="C:\Users\pqcmm\AppData\Local\Temp\surefire724174880288075737\surefirebooter-20240430185116462_3.jar C:\Users\pqcmm\AppData\Local\Temp\surefire724174880288075737 2024-04-30T18-51-16_321-jvmRun1 surefire-20240430185116462_1tmp surefire_0-20240430185116462_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="D:\Develop\JavaDevelop\qc-tools\threads-utils\target\test-classes;D:\Develop\JavaDevelop\qc-tools\threads-utils\target\classes;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-web\2.7.6\spring-boot-starter-web-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter\2.7.6\spring-boot-starter-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot\2.7.6\spring-boot-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-logging\2.7.6\spring-boot-starter-logging-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\logging\log4j\log4j-to-slf4j\2.17.2\log4j-to-slf4j-2.17.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\logging\log4j\log4j-api\2.17.2\log4j-api-2.17.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\slf4j\jul-to-slf4j\1.7.36\jul-to-slf4j-1.7.36.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-core\5.3.24\spring-core-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-jcl\5.3.24\spring-jcl-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\yaml\snakeyaml\1.30\snakeyaml-1.30.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-json\2.7.6\spring-boot-starter-json-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\core\jackson-databind\2.13.4.2\jackson-databind-2.13.4.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\core\jackson-annotations\2.13.4\jackson-annotations-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\core\jackson-core\2.13.4\jackson-core-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.13.4\jackson-datatype-jdk8-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.4\jackson-datatype-jsr310-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.13.4\jackson-module-parameter-names-2.13.4.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-tomcat\2.7.6\spring-boot-starter-tomcat-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\tomcat\embed\tomcat-embed-core\9.0.69\tomcat-embed-core-9.0.69.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\tomcat\embed\tomcat-embed-el\9.0.69\tomcat-embed-el-9.0.69.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apache\tomcat\embed\tomcat-embed-websocket\9.0.69\tomcat-embed-websocket-9.0.69.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-web\5.3.24\spring-web-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-beans\5.3.24\spring-beans-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-webmvc\5.3.24\spring-webmvc-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-aop\5.3.24\spring-aop-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-context\5.3.24\spring-context-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-expression\5.3.24\spring-expression-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-boot-starter\3.5.5\mybatis-plus-boot-starter-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus\3.5.5\mybatis-plus-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-core\3.5.5\mybatis-plus-core-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-annotation\3.5.5\mybatis-plus-annotation-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-extension\3.5.5\mybatis-plus-extension-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\mybatis\mybatis\3.5.15\mybatis-3.5.15.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\github\jsqlparser\jsqlparser\4.6\jsqlparser-4.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\mybatis\mybatis-spring\2.1.2\mybatis-spring-2.1.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\baomidou\mybatis-plus-spring-boot-autoconfigure\3.5.5\mybatis-plus-spring-boot-autoconfigure-3.5.5.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-autoconfigure\2.7.6\spring-boot-autoconfigure-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\boot\spring-boot-starter-jdbc\2.7.6\spring-boot-starter-jdbc-2.7.6.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-jdbc\5.3.24\spring-jdbc-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\springframework\spring-tx\5.3.24\spring-tx-5.3.24.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;D:\Develop\Dependency\apache-maven-3.9.4\maven_repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
+    <property name="surefire.test.class.path" value="D:\Develop\JavaProgram\qc-tools\threads-utils\target\test-classes;D:\Develop\JavaProgram\qc-tools\threads-utils\target\classes;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-web\2.7.6\spring-boot-starter-web-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter\2.7.6\spring-boot-starter-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot\2.7.6\spring-boot-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-autoconfigure\2.7.6\spring-boot-autoconfigure-2.7.6.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-logging\2.7.6\spring-boot-starter-logging-2.7.6.jar;E:\maven\maven_repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar;E:\maven\maven_repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar;E:\maven\maven_repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;E:\maven\maven_repository\org\apache\logging\log4j\log4j-to-slf4j\2.17.2\log4j-to-slf4j-2.17.2.jar;E:\maven\maven_repository\org\apache\logging\log4j\log4j-api\2.17.2\log4j-api-2.17.2.jar;E:\maven\maven_repository\org\slf4j\jul-to-slf4j\1.7.36\jul-to-slf4j-1.7.36.jar;E:\maven\maven_repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;E:\maven\maven_repository\org\springframework\spring-core\5.3.24\spring-core-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-jcl\5.3.24\spring-jcl-5.3.24.jar;E:\maven\maven_repository\org\yaml\snakeyaml\1.30\snakeyaml-1.30.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-json\2.7.6\spring-boot-starter-json-2.7.6.jar;E:\maven\maven_repository\com\fasterxml\jackson\core\jackson-databind\2.13.4.2\jackson-databind-2.13.4.2.jar;E:\maven\maven_repository\com\fasterxml\jackson\core\jackson-annotations\2.13.4\jackson-annotations-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\core\jackson-core\2.13.4\jackson-core-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.13.4\jackson-datatype-jdk8-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.4\jackson-datatype-jsr310-2.13.4.jar;E:\maven\maven_repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.13.4\jackson-module-parameter-names-2.13.4.jar;E:\maven\maven_repository\org\springframework\boot\spring-boot-starter-tomcat\2.7.6\spring-boot-starter-tomcat-2.7.6.jar;E:\maven\maven_repository\org\apache\tomcat\embed\tomcat-embed-core\9.0.69\tomcat-embed-core-9.0.69.jar;E:\maven\maven_repository\org\apache\tomcat\embed\tomcat-embed-el\9.0.69\tomcat-embed-el-9.0.69.jar;E:\maven\maven_repository\org\apache\tomcat\embed\tomcat-embed-websocket\9.0.69\tomcat-embed-websocket-9.0.69.jar;E:\maven\maven_repository\org\springframework\spring-web\5.3.24\spring-web-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-beans\5.3.24\spring-beans-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-webmvc\5.3.24\spring-webmvc-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-aop\5.3.24\spring-aop-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-context\5.3.24\spring-context-5.3.24.jar;E:\maven\maven_repository\org\springframework\spring-expression\5.3.24\spring-expression-5.3.24.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;E:\maven\maven_repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;E:\maven\maven_repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;E:\maven\maven_repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;E:\maven\maven_repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;E:\maven\maven_repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\pqcmm"/>
     <property name="user.language" value="zh"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2022-08-18"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-17.0.4.1"/>
+    <property name="java.version.date" value="2023-09-19"/>
+    <property name="java.home" value="D:\Develop\Dependency\graalvm\graalvm-jdk-21+35.1"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="D:\Develop\JavaDevelop\qc-tools\threads-utils"/>
+    <property name="basedir" value="D:\Develop\JavaProgram\qc-tools\threads-utils"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="jdk.internal.vm.ci.enabled" value="true"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\pqcmm\AppData\Local\Temp\surefire14923819122656825606\surefirebooter-20240407150513507_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\pqcmm\AppData\Local\Temp\surefire724174880288075737\surefirebooter-20240430185116462_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="17.0.4.1+1-LTS-2"/>
-    <property name="user.name" value="pqcmm"/>
+    <property name="java.runtime.version" value="21+35-jvmci-23.1-b15"/>
+    <property name="user.name" value="qcqcqc"/>
+    <property name="stdout.encoding" value="GBK"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="file.encoding" value="GBK"/>
+    <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="D:\Develop\Dependency\apache-maven-3.9.4\maven_repository"/>
+    <property name="java.vendor.version" value="Oracle GraalVM 21+35.1"/>
+    <property name="localRepository" value="E:\maven\maven_repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\pqcmm\AppData\Local\Temp\"/>
-    <property name="java.version" value="17.0.4.1"/>
-    <property name="user.dir" value="D:\Develop\JavaDevelop\qc-tools\threads-utils"/>
+    <property name="java.version" value="21"/>
+    <property name="user.dir" value="D:\Develop\JavaProgram\qc-tools\threads-utils"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="GBK"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-17.0.4.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\Develop\Dependency\apache-maven-3.9.4\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;D:\Develop\Dependency\ctags\ctags-2023-12-02_p6.0.20231126.0-9-g684ed1d-clang-x64;D:\Develop\Dependency\Android\tools;C:\Program Files\Python312\Scripts\;C:\Program Files\Python312\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Program Files\Bandizip;D:\Program Files\Go\bin;D:\Program Files\Redis\;D:\Develop\Dependency\nvm;C:\Program Files\nodejs;D:\Develop\Dependency\mingw64\bin;D:\Develop\Dependency\cloc;D:\Program Files (x86)\Tencent\微信web开发者工具\dll;C:\Program Files\Git\cmd;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Users\pqcmm\scoop\shims;C:\Users\pqcmm\.console-ninja\.bin;C:\Users\pqcmm\AppData\Local\Microsoft\WindowsApps;C:\Users\pqcmm\go\bin;D:\Program Files\Microsoft VS Code\bin;D:\Program Files\JetBrains\IntelliJ IDEA 2023.2\bin;C:\Users\pqcmm\AppData\Local\JetBrains\Toolbox\scripts;D:\Program Files\JetBrains\WebStorm 2023.2.2\bin;;D:\Develop\Dependency\nvm;C:\Program Files\nodejs;D:\Program Files\JetBrains\PyCharm 2023.2.4\bin;;D:\Program Files\JetBrains\GoLand 2023.2.4\bin;;D:\modeltech64_10.4\win64;."/>
+    <property name="java.library.path" value="D:\Develop\Dependency\graalvm\graalvm-jdk-21+35.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\Develop\Dependency\anaconda3;D:\Develop\Dependency\anaconda3\Library\mingw-w64\bin;D:\Develop\Dependency\anaconda3\Library\usr\bin;D:\Develop\Dependency\anaconda3\Library\bin;D:\Develop\Dependency\anaconda3\Scripts;D:\Develop\Dependency\anaconda3\bin;D:\Develop\Dependency\anaconda3\condabin;D:\Develop\Dependency\anaconda3;D:\Develop\Dependency\anaconda3\Scripts;D:\Develop\Dependency\anaconda3\Library\bin;D:\Develop\Dependency\mysql-8.0.36-winx64\bin;C:\Users\pqcmm\.cargo\bin;D:\Program Files\JetBrains\IntelliJ IDEA 2022.3.1\bin;D:\Develop\Dependency\pnpm\bin;D:\Develop\Dependency\apache-maven-3.9.4\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\libnvvp;D:\Program Files\JetBrains\IntelliJ IDEA 2022.3.1\plugins\maven\lib\maven3\bin;D:\Develop\Dependency\graalvm\graalvm-java\bin;C:\Users\pqcmm\AppData\Roaming\Python\Python311\Scripts;C:\Program Files\Python311\Scripts;C:\Program Files\Python311;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\VMware\VMware Workstation\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Bandizip;C:\Program Files\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\Redis;D:\Program Files (x86)\Tencent\微信web开发者工具\dll;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\nvm;C:\Program Files\nodejs;C:\Program Files\Bandizip;D:\Program Files\Go\bin;D:\Software\AOMEI-Backupper\AOMEI Backupper\7.3.0;D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\bin\Hostx64\x64;D:\Develop\Dependency\netcat-win32-1.12;C:\Program Files\Cloudflare\Cloudflare WARP;D:\Develop\Dependency\neo4j-community-5.10.0\bin;C:\Program Files\NVIDIA Corporation\Nsight Compute 2022.1.0;D:\Develop\Dependency\ffmpeg-6.0-essentials_build\bin;D:\Windows Kits\10\Windows Performance Toolkit;C:\Program Files (x86)\GnuPG\bin;%QUARTUS_ROOTDIR%\bin;D:\Program Files (x86)\GnuWin32\bin;D:\Develop\Dependency\wget-1.21.4-win64;C:\Users\pqcmm\.cargo\bin;C:\Users\pqcmm\AppData\Local\pnpm;C:\Users\pqcmm\.console-ninja\.bin;C:\Users\pqcmm\scoop\shims;C:\Users\pqcmm\AppData\Local\Microsoft\WindowsApps;C:\Users\pqcmm\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pqcmm\AppData\Roaming\npm;C:\Program Files\nvm;C:\Program Files\nodejs;c:\users\pqcmm\.local\bin;c:\users\pqcmm\appdata\roaming\python\python311\scripts;C:\Users\pqcmm\.dotnet\tools;C:\Users\pqcmm\go\bin;D:\Program Files\JetBrains\GoLand 2023.1.4\bin;.;D:\Program Files\Neovim\bin;C:\Users\pqcmm\.dotnet\tools;D:\Program Files\Huawei\DevEco Studio\bin;.;D:\Software\modeltech64_10.4C\win64;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="GBK"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="17.0.4.1+1-LTS-2"/>
+    <property name="java.vm.version" value="21+35-jvmci-23.1-b15"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="61.0"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testException" classname="online.zust.qcqcqc.utils.TestDemos" time="1.181">
-    <system-out><![CDATA[15:05:14.578 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testException" classname="online.zust.qcqcqc.utils.TestDemos" time="1.093">
+    <system-out><![CDATA[18:51:17.052 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 start promise....
 返回结果为运行出错啦，进入异常回调
 返回结果为456，进入finally回调
 Promise结果为：456
 ]]></system-out>
   </testcase>
-  <testcase name="testThreads" classname="online.zust.qcqcqc.utils.TestDemos" time="8.018">
-    <system-out><![CDATA[15:05:15.629 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testThreads" classname="online.zust.qcqcqc.utils.TestDemos" time="8.025">
+    <system-out><![CDATA[18:51:18.078 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 主线程已完成，等待3秒钟
 start wait.....
 尝试获取Promise结果
-15:05:18.636 [1712473514572-exec-1] ERROR online.zust.qcqcqc.utils.threads.Promise - Promise rejected by user
+18:51:21.093 [1714474277049-exec-1] ERROR online.zust.qcqcqc.utils.threads.Promise - Promise rejected by user
 返回结果为123，进入失败回调
 返回结果为123，进入finally回调
 Promise结果为：123
@@ -78,24 +82,24 @@ start wait.....
 start wait.....
 返回结果为456，进入成功回调
 返回结果为456，进入finally回调
-15:05:21.639 [1712473514572-exec-2] ERROR online.zust.qcqcqc.utils.threads.Promise - Promise rejected by user
+18:51:24.106 [1714474277049-exec-2] ERROR online.zust.qcqcqc.utils.threads.Promise - Promise rejected by user
 返回结果为123，进入失败回调
 返回结果为123，进入finally回调
 ]]></system-out>
   </testcase>
-  <testcase name="testTimeout" classname="online.zust.qcqcqc.utils.TestDemos" time="3.01">
-    <system-out><![CDATA[15:05:23.648 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testTimeout" classname="online.zust.qcqcqc.utils.TestDemos" time="3.002">
+    <system-out><![CDATA[18:51:26.103 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 timeout
 ]]></system-out>
   </testcase>
-  <testcase name="testNullTask" classname="online.zust.qcqcqc.utils.TestDemos" time="1.017">
-    <system-out><![CDATA[15:05:26.660 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testNullTask" classname="online.zust.qcqcqc.utils.TestDemos" time="1.002">
+    <system-out><![CDATA[18:51:29.106 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 未完成任务数量：1
 任务全部完成
 ]]></system-out>
   </testcase>
-  <testcase name="testSync" classname="online.zust.qcqcqc.utils.TestDemos" time="2.033">
-    <system-out><![CDATA[15:05:27.678 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testSync" classname="online.zust.qcqcqc.utils.TestDemos" time="2.018">
+    <system-out><![CDATA[18:51:30.109 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 start wait.....
 返回结果为123，进入成功回调
 start wait.....
@@ -105,24 +109,24 @@ start wait.....
 Promise结果为：123 456
 ]]></system-out>
   </testcase>
-  <testcase name="testProgressCallback" classname="online.zust.qcqcqc.utils.TestDemos" time="0.892">
-    <system-out><![CDATA[15:05:29.713 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
-15:05:29.831 [1712473514572-exec-20] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-20，任务进度：1/10
-15:05:29.877 [1712473514572-exec-14] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-14，任务进度：2/10
-15:05:30.031 [1712473514572-exec-18] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-18，任务进度：3/10
-15:05:30.139 [1712473514572-exec-11] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-11，任务进度：4/10
-15:05:30.278 [1712473514572-exec-17] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-17，任务进度：5/10
-15:05:30.294 [1712473514572-exec-12] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-12，任务进度：6/10
-15:05:30.371 [1712473514572-exec-16] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-16，任务进度：7/10
-15:05:30.390 [1712473514572-exec-15] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-15，任务进度：8/10
-15:05:30.603 [1712473514572-exec-13] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-13，任务进度：9/10
-15:05:30.603 [1712473514572-exec-19] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1712473514572-exec-19，任务进度：9/10
+  <testcase name="testProgressCallback" classname="online.zust.qcqcqc.utils.TestDemos" time="0.79">
+    <system-out><![CDATA[18:51:32.128 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+18:51:32.351 [1714474277049-exec-20] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-20，任务进度：1/10
+18:51:32.407 [1714474277049-exec-18] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-18，任务进度：2/10
+18:51:32.449 [1714474277049-exec-13] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-13，任务进度：3/10
+18:51:32.471 [1714474277049-exec-17] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-17，任务进度：4/10
+18:51:32.487 [1714474277049-exec-11] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-11，任务进度：5/10
+18:51:32.513 [1714474277049-exec-12] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-12，任务进度：6/10
+18:51:32.526 [1714474277049-exec-19] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-19，任务进度：7/10
+18:51:32.601 [1714474277049-exec-15] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-15，任务进度：8/10
+18:51:32.682 [1714474277049-exec-16] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-16，任务进度：9/10
+18:51:32.917 [1714474277049-exec-14] INFO online.zust.qcqcqc.utils.threads.Tasks - 当前执行的线程1714474277049-exec-14，任务进度：10/10
 任务全部完成
-任务结果：[409, 569, 873, 155, 658, 650, 548, 309, 881, 100]
+任务结果：[357, 383, 319, 787, 470, 548, 337, 274, 392, 218]
 ]]></system-out>
   </testcase>
-  <testcase name="testMultiTask" classname="online.zust.qcqcqc.utils.TestDemos" time="0.914">
-    <system-out><![CDATA[15:05:30.606 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testMultiTask" classname="online.zust.qcqcqc.utils.TestDemos" time="0.95">
+    <system-out><![CDATA[18:51:32.918 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 start wait.....
 start wait.....
 start wait.....
@@ -135,32 +139,52 @@ start wait.....
 start wait.....
 返回结果为6，进入成功回调
 返回结果为5，进入成功回调
-返回结果为8，进入成功回调
-返回结果为7，进入成功回调
 返回结果为3，进入成功回调
 返回结果为1，进入成功回调
 返回结果为4，进入成功回调
-返回结果为2，进入成功回调
-返回结果为0，进入成功回调
+返回结果为7，进入成功回调
 返回结果为9，进入成功回调
-执行结果为：[6, 5, 8, 7, 3, 1, 4, 2, 0, 9]
+返回结果为0，进入成功回调
+返回结果为2，进入成功回调
+返回结果为8，进入成功回调
+执行结果为：[6, 5, 3, 1, 4, 7, 9, 0, 2, 8]
 Promise结果为：[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ]]></system-out>
   </testcase>
-  <testcase name="testCreateThreadPool" classname="online.zust.qcqcqc.utils.TestDemos" time="0.002">
-    <system-out><![CDATA[15:05:31.522 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testStartWithMultiThreads1" classname="online.zust.qcqcqc.utils.TestDemos" time="0.001">
+    <system-out><![CDATA[18:51:33.870 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+执行任务：3
+执行任务：1
+执行任务：2
+执行任务：4
+执行任务：5
+任务结果：[3, 1, 2, 4, 5]
 ]]></system-out>
   </testcase>
-  <testcase name="testSimple" classname="online.zust.qcqcqc.utils.TestDemos" time="1.014">
-    <system-out><![CDATA[15:05:31.524 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testStartWithMultiThreads2" classname="online.zust.qcqcqc.utils.TestDemos" time="1.007">
+    <system-out><![CDATA[18:51:33.872 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+执行任务：2
+执行任务：1
+执行任务：3
+执行任务：4
+执行任务：5
+任务结果：[1, 2, 3, 4, 5]
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateThreadPool" classname="online.zust.qcqcqc.utils.TestDemos" time="0.001">
+    <system-out><![CDATA[18:51:34.880 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+]]></system-out>
+  </testcase>
+  <testcase name="testSimple" classname="online.zust.qcqcqc.utils.TestDemos" time="1.01">
+    <system-out><![CDATA[18:51:34.882 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 start promise....
 返回结果为123，进入成功回调
 返回结果为123，进入finally回调
 Promise结果为：123
 ]]></system-out>
   </testcase>
-  <testcase name="testMultiReturnValue" classname="online.zust.qcqcqc.utils.TestDemos" time="1.016">
-    <system-out><![CDATA[15:05:32.539 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+  <testcase name="testMultiReturnValue" classname="online.zust.qcqcqc.utils.TestDemos" time="1.003">
+    <system-out><![CDATA[18:51:35.893 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
 Promise已启动，等待结果
 start wait.....
 start wait.....
