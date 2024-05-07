@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -327,5 +328,19 @@ public class TestDemos {
             return "error";
         });
         System.out.println("任务结果：" + strings);
+    }
+
+    @Test
+    public void testCompletableFuture() {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 123;
+        });
+        future.thenAccept(System.out::println);
+        CompletableFuture.allOf(future).join();
     }
 }
