@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Executor;
@@ -79,10 +80,14 @@ public class PromiseExecutor implements DisposableBean {
 
     @Override
     public void destroy() throws Exception {
-        if (promiseExecutor instanceof ThreadPoolExecutor) {
-            ((ThreadPoolExecutor) promiseExecutor).shutdown();
+        if (promiseExecutor instanceof ThreadPoolTaskExecutor) {
+            ((ThreadPoolTaskExecutor) promiseExecutor).shutdown();
         } else {
-            log.warn("promiseExecutor is not ThreadPoolExecutor, cannot shutdown.");
+            if (promiseExecutor instanceof ThreadPoolExecutor) {
+                ((ThreadPoolExecutor) promiseExecutor).shutdown();
+            } else {
+                log.warn("promiseExecutor is not ThreadPoolExecutor, cannot shutdown.");
+            }
         }
     }
 }
